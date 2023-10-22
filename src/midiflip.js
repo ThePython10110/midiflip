@@ -41,7 +41,7 @@
 								if (event.param1 < old_min_value) {
 									old_min_value = event.param1;
 								}
-								if (event.param1 < old_max_value) {
+								if (event.param1 > old_max_value) {
 									old_max_value = event.param1;
 								}
 							}
@@ -51,7 +51,7 @@
 								if (event.param1 < new_min_value) {
 									new_min_value = event.param1;
 								}
-								if (event.param1 < new_max_value) {
+								if (event.param1 > new_max_value) {
 									new_max_value = event.param1;
 								}
 							}
@@ -61,7 +61,8 @@
 			}
 			if (fix_range && (old_min_value != new_min_value || old_max_value != new_max_value)) {
 				// There may be a better way then Math.round(stuff/12)*12, but I don't want to check.
-				var note_change = Math.round((new_min_value - old_min_value)/12)*12;
+				var note_change = Math.round((old_min_value - new_min_value)/12)*12;
+				
 				for(var i=0; i<events.length; i++){
 					var event = events[i];
 					if(event.type === MIDIEvents.EVENT_MIDI){
@@ -71,8 +72,7 @@
 							if(!isPercussion || mess_with_percussion){
 								// TODO: account for randomness in fn by transforming NOTEOFFs the same as the previous NOTEON
 								// can keep a map of midi note numbers to what the previous NOTEON was transformed to
-								new_value = event.param1 + note_change;
-								event.param1 = new_value
+								event.param1 = event.param1 + note_change;
 							}
 						}
 					}
