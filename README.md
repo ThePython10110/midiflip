@@ -7,18 +7,20 @@ MidiFlip can be used to simply flip notes around,
 inverting all the pitches,
 but it also gives you raw control over the notes in a simple way so you can make arbitrary remappings.
 
-[Try MidiFlip online.](https://1j01.github.io/midiflip/)
+[Try MidiFlip online.](https://thepython10110.github.io/midiflip/)
 You can batch convert files and download the results as a zip file.
 (The files are not uploaded to a server.)
 
 The web interface supports everything the CLI does (and actually more at the moment).
 
+## Changes from the original:
+The only difference is the ability to transpose pitches to an octave closer to their normal range.
 
 ## Future Direction
 
 It would be good to be able to look at the original song as a whole in order to
-transpose notes back to reasonable ranges like [Automatic MIDI Inverter](https://midi-inverter.herokuapp.com/) does,
-or do fancier stuff like finding the scale used and mapping it to another.
+<del>transpose notes back to reasonable ranges like [Automatic MIDI Inverter](https://midi-inverter.herokuapp.com/) does,
+or </del>do fancier stuff like finding the scale used and mapping it to another.
 (You can only look at and change a single note at a time with the current API.)
 
 MidiFlip could also let you deal in time,
@@ -75,10 +77,14 @@ rather than `transformed/midis/Avgvst/FreeRide.mid`
 Add `-p` or `--percussion` to apply the same transformation to percussion as to other notes,
 which doesn't make the semantic sense that applying it to pitch does.
 
+### Fix pitches
+
+Add `-f` or `--fixpitch` to transpose all modified notes to the octave closest to their original
+range.
 
 ## License (MIT)
 
-Copyright 2017 Isaiah Odhner
+Copyright 2023 by ThePython10110
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 

@@ -1,15 +1,15 @@
 {
   "name": "midiflip",
-  "version": "0.3.0",
-  "description": "Transform MIDI files mathematically",
-  "author": "Isaiah Odhner <isaiah.odhner@gmail.com> (https://isaiahodhner.io)",
+  "version": "0.4.0",
+  "description": "Transform MIDI files mathematically (forked from the original by Isaiah Odhner)",
+  "author": "ThePython10110 (https://thepython10110.github.io)",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/1j01/midiflip.git"
+    "url": "https://github.com/thepython10110/midiflip.git"
   },
   "bugs": {
-    "url": "https://github.com/1j01/midiflip/issues"
+    "url": "https://github.com/thepython10110/midiflip/issues"
   },
   "keywords": [
     "midi",

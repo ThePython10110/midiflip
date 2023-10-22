@@ -10,15 +10,18 @@ var transform_expression_input = document.querySelector("#transform-expression")
 var transform_preset_select = document.querySelector("#transform-presets");
 var custom_transform_option = document.querySelector("#custom-transform");
 var mess_with_percussion_checkbox = document.querySelector("#mess-with-percussion");
+var fix_range_checkbox = document.querySelector("#fix-range");
 
 var fn;
 var mess_with_percussion;
+var fix_range;
 
 var results = [];
 var zip_blob_url = null;
 
 var update_from_settings = function(){
 	mess_with_percussion = mess_with_percussion_checkbox.checked;
+	fix_range = fix_range_checkbox.checked;
 	
 	if (transform_expression_input.value != transform_preset_select.querySelector("option:checked").value) {
 		custom_transform_option.selected = true;
@@ -111,7 +114,7 @@ var add_file = function(file, callback) {
 		a.removeAttribute("href");
 		
 		try {
-			var result_array_buffer = midiflip(result.input_array_buffer, fn, mess_with_percussion);
+			var result_array_buffer = midiflip(result.input_array_buffer, fn, mess_with_percussion, fix_range);
 			result.blob = new Blob([result_array_buffer], {type: "audio/midi"});
 			result.blob_url = URL.createObjectURL(result.blob);
 		} catch(e) {
@@ -233,6 +236,7 @@ var create_zip = function() {
 update_from_settings();
 transform_expression_input.addEventListener("change", update_from_settings);
 mess_with_percussion_checkbox.addEventListener("change", update_from_settings);
+fix_range_checkbox.addEventListener("change", update_from_settings);
 transform_preset_select.addEventListener("change", function() {
 	transform_expression_input.value = transform_preset_select.querySelector("option:checked").value;
 	// transform_expression_input.value = transform_preset_select.options[transform_preset_select.selectedIndex].value;

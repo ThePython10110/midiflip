@@ -5,6 +5,7 @@ var argv = require("minimist")(process.argv.slice(2));
 var input_path = argv.input || argv.i;
 var output_path = argv.output || argv.o;
 var mess_with_percussion = argv.percussion || argv.p;
+var fix_range = argv.fixrange || argv.f;
 
 var fn = function(n, event){
 	return 127 - n;
@@ -19,7 +20,7 @@ var transform_file = function(input_path, output_path){
 	console.log("Load " + input_path);
 	var buffer = fs.readFileSync(input_path);
 	var array_buffer = buffer.buffer.slice(buffer.byteOffset, buffer.byteOffset + buffer.byteLength);
-	var new_array_buffer = midiflip(array_buffer, fn, mess_with_percussion);
+	var new_array_buffer = midiflip(array_buffer, fn, mess_with_percussion, fix_range);
 	var new_buffer = Buffer.from(new_array_buffer);
 	var output_dir = path.dirname(output_path);
 	mkdirp.sync(output_dir);
